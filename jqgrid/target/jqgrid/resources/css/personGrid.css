@@ -1,0 +1,99 @@
+/***********************************/
+/******Inherited from main CSS******/
+/***********************************/
+
+/* Grid layout */
+.ui-jqgrid .ui-pg-selbox {
+    display: block;
+    font-size: 0.8em;
+    height: 20px;
+    line-height: 18px;
+    margin: 0;
+    width: 50px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+}
+
+.ui-jqgrid .ui-pg-input {
+    font-size: 0.8em;
+    height: 10px;
+    width: 10px;
+    margin: 0;
+}
+
+/* Grid table tag */
+table {
+	font-size: 1em;
+}
+
+/* Fields tags in grid */
+input[type="text"] {
+	width: 155px;
+	height: 15px;
+	padding-left: 0px;
+}
+
+input[type="password"] {
+	width: 155px;
+	height: 15px;
+	padding-left: 0px;
+}
+
+input, textarea, .uneditable-input {
+    margin-bottom: 10px;
+    /* margin-left: 5px; */
+}
+
+select {
+	width: 163px;
+	height: 25px;
+}
+
+.CaptionTD form-view-label ui-widget-content {
+	font-size: 2px;
+}
+
+.add-rule ui-add {
+	height: 20px;
+}
+
+.delete-rule ui-del {
+	height: 20px;
+	margin-left: 19px;
+}
+
+.ui-jqdialog-content .DataTD {
+	border: 0 none;
+    padding: 6px;
+    vertical-align: top;
+}
+
+.DataTD form-view-data ui-helper-reset ui-widget-content {
+	padding: 6px;
+}
+
+/* Row height in grid*/
+
+
+/* Display loading Image when reloading grid */
+.ui-jqgrid .loading {
+            background: url(../../img/ajax-loader.gif) repeat transparent;
+            background-color: transparent;
+            border-style: none;
+            background-repeat: no-repeat;
+            height: 200px;
+            width: 100px;
+}
+
+/* Add & Edit Modal Dialog */
+#personBirthDate {
+	width: 140px; /* To decrease size of field to avoid wrapping of fields */
+}
+
+/* Fields in Grid */
+#personSkills {
+	height: 100px;
+	width: 163px;
+}
+
+/* Fields of search tool bar */
