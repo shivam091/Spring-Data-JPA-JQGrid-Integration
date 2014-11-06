@@ -16,9 +16,14 @@
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/css/start/jquery.ui.theme.css" />
 <link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/css/ui.multiselect.css" />
+<link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/css/start/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/css//ui.jqgrid.css" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap/select2.css" />
 <link rel="stylesheet" type="text/css" media="screen"
 	href="${pageContext.request.contextPath}/resources/css//personGrid.css" />
 </head>
@@ -35,13 +40,48 @@
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.8.16.custom.min.js" /></script>
 	<script type='text/javascript'
+		src="${pageContext.request.contextPath}/resources/js/ui.multiselect.js" /></script>
+	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/i18n/grid.locale-en.js" /></script>
-
+	<script type='text/javascript'
+		src="${pageContext.request.contextPath}/resources/js/i18n/grid.locale-en.js" /></script>
+	<script type='text/javascript'
+		src="${pageContext.request.contextPath}/resources/js/i18n/grid.locale-en.js" /></script>
+		
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/jquery.jqGrid.min.js" /></script>
+
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/jquery.maskedinput-1.3.js" /></script>
+		<script type='text/javascript'
+		src="${pageContext.request.contextPath}/resources/js/bootstrap/select2.js" /></script>
 	<script type="text/javascript">
+	/***********************Start dialog animation*******************************/
+	/****to animate add, edit, delete, view ********************/
+	$.extend($.jgrid, {
+        showModal : function(h) {
+            h.w.show("slow");
+        },
+        closeModal : function(h) {
+            h.w.hide("slow").attr("aria-hidden", "true");
+            if(h.o) {h.o.remove();}
+        }
+    });
+	/***********************to animate column chooser******************/
+	$.extend(true, $.jgrid.col, {
+        width: 450,
+        modal: true,
+        msel_opts: {dividerLocation: 0.5},
+        dialog_opts: {
+            minWidth: 470,
+            show: 'blind',
+            hide: 'explode'
+        }
+    });
+
+	/***********************End dialog animation*******************************/
+
+	/******************************** Start Date picker***************************/
 		$(function() {
 			initDateWithButton = function(elem) {
 				if (/^\d+%$/.test(elem.style.width)) {
@@ -80,7 +120,7 @@
 				align : 'center',
 				sorttype : 'date',
 				editable : true,
-				formatter : 'date',				
+				formatter : 'date',
 				formatoptions : {
 					newformat : 'd.m.Y'
 				},
@@ -99,7 +139,7 @@
 				// for the searching toolbar
 				}
 			};
-
+			/******************************** End Date picker***************************/
 			$("#myGrid")
 					.jqGrid(
 							{
@@ -148,8 +188,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkNameForEmpty,
+												custom : true,
+												custom_func : checkNameForEmpty,
 											},
 											editoptions : {
 												size : 30
@@ -179,8 +219,8 @@
 											formatter : 'password',
 											edittype : 'password',
 											editrules : {
-												custom:true,
-												custom_func:checkPasswordForEmpty,
+												custom : true,
+												custom_func : checkPasswordForEmpty,
 												edithidden : true,//to enable unhide password field when editing
 											},
 											formoptions : {
@@ -198,14 +238,23 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkGenderForEmpty,
+												custom : true,
+												custom_func : checkGenderForEmpty,
 											},
 											edittype : "select",
 											formatter : 'select',
 											stype : 'select',
 											editoptions : {
-												value : ":Select Gender;Male:Male;Female:Female"
+												value : ":Select Gender;Male:Male;Female:Female",
+												dataInit : function(element) {
+													$(element).width(165).select2(
+															{
+																		// add "ui-widget" class to have the same font-family like in jQuery UI Theme
+																		// add "ui-jqdialog" class to have font-size:11px like in other items of jqGrid form
+																		dropdownCssClass : "ui-widget ui-jqdialog"
+																	});
+												}
+
 											},
 											formatoptions : {
 												value : ":Select Gender;Male:Male;Female:Female"
@@ -217,7 +266,8 @@
 											},
 											searchoptions : {
 												sopt : [ 'eq' ],
-												value : ":Select Gender;Male:Male;Female:Female"
+												value : ":Select Gender;Male:Male;Female:Female",
+												
 											}
 										},
 										{
@@ -233,8 +283,8 @@
 											},
 											search : true,
 											editrules : {
-												custom:true,
-												custom_func:checkBirthDateForEmpty
+												custom : true,
+												custom_func : checkBirthDateForEmpty
 											}
 										},
 										{
@@ -245,8 +295,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkMobileNumberForEmpty
+												custom : true,
+												custom_func : checkMobileNumberForEmpty
 											},
 											editoptions : {
 												size : 10,
@@ -282,8 +332,8 @@
 											editable : true,
 											editrules : {
 												email : true,
-												custom:true,
-												custom_func:checkEmailIdForUnique
+												custom : true,
+												custom_func : checkEmailIdForUnique
 											},
 											editoptions : {
 												size : 30
@@ -310,8 +360,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkDesignationForEmpty,
+												custom : true,
+												custom_func : checkDesignationForEmpty,
 											},
 											editoptions : {
 												size : 30
@@ -338,9 +388,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkStateForEmpty
-
+												custom : true,
+												custom_func : checkStateForEmpty
 											},
 											edittype : "select",
 											formatter : 'text',
@@ -352,7 +401,15 @@
 													fn : function(e) {
 
 													}
-												} ]
+												} ],
+												dataInit : function(element) {
+													$(element).width(165).select2(
+															{
+																		// add "ui-widget" class to have the same font-family like in jQuery UI Theme
+																		// add "ui-jqdialog" class to have font-size:11px like in other items of jqGrid form
+																		dropdownCssClass : "ui-widget ui-jqdialog"
+																	});
+												}
 											},
 											formatoptions : {
 
@@ -364,7 +421,7 @@
 											},
 											searchoptions : {
 												sopt : [ 'eq' ],
-												dataUrl : './person/getStateList.json'
+												dataUrl : './person/getStateList.json',												
 											}
 										},
 										{
@@ -375,14 +432,22 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkCityForEmpty
+												custom : true,
+												custom_func : checkCityForEmpty
 											},
 											edittype : "select",
 											formatter : 'text',
 											stype : 'select',
 											editoptions : {
-												dataUrl : './person/getAllCities.json'
+												dataUrl : './person/getAllCities.json',
+												dataInit : function(element) {
+													$(element).width(165).select2(
+															{
+																		// add "ui-widget" class to have the same font-family like in jQuery UI Theme
+																		// add "ui-jqdialog" class to have font-size:11px like in other items of jqGrid form
+																		dropdownCssClass : "ui-widget ui-jqdialog"
+																	});
+												}
 											},
 											formatoptions : {
 
@@ -405,8 +470,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkPostalCodeForEmpty
+												custom : true,
+												custom_func : checkPostalCodeForEmpty
 											},
 											formatter : 'text',
 											editoptions : {
@@ -441,8 +506,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkGitUrlForEmpty
+												custom : true,
+												custom_func : checkGitUrlForEmpty
 											},
 											formatter : 'link',
 											editoptions : {
@@ -470,8 +535,8 @@
 											align : 'center',
 											editable : true,
 											editrules : {
-												custom:true,
-												custom_func:checkSkillsForEmpty,
+												custom : true,
+												custom_func : checkSkillsForEmpty,
 											},
 											edittype : "select",
 											formatter : 'text',
@@ -521,7 +586,7 @@
 										}, ],
 								rowNum : 10,
 								rowList : [ 10, 20, 30, 40, 60, 80, 100 ],
-								height : 347,
+								height : 347, /* height : "auto%" if auto height to be set */
 								autowidth : true,
 								gridview : true,
 								rownumbers : true, //enables row numbers
@@ -577,7 +642,7 @@
 
 								},
 								gridComplete : function() {
-
+									
 								},
 								ondblClickRow : function(rowid, ri, ci) {
 
@@ -601,6 +666,28 @@
 									}
 								}
 							});
+			
+		/********************************Start add custom button in column header**********************************/
+			$('#myGrid').closest("div.ui-jqgrid-view").find("div.ui-jqgrid-hdiv table.ui-jqgrid-htable tr.ui-jqgrid-labels > th.ui-th-column > div.ui-jqgrid-sortable")
+            .each(function () {
+                $('<button>').css({ height: "17px" }).appendTo(this).button({
+                    icons: {
+                        primary: "ui-icon-gear"
+                    },
+                    text: false
+                }).click(function (e) {
+                    var idPrefix = "jqgh_" + $('#myGrid')[0].id + "_",
+                        thId = $(e.target).closest('div.ui-jqgrid-sortable')[0].id;
+                    // thId will be like "jqgh_list_name"
+                    if (thId.substr(0, idPrefix.length) === idPrefix) {
+                        alert('Clicked the button in the column "' + thId.substr(idPrefix.length) + '"');
+                        return false;
+                    }
+                });
+            });
+			/********************************end add custom button in column header**********************************/
+			
+			/*********************************Show current sortable icon ***************************************/
 			$(
 					'#gbox_'
 							+ $.jgrid.jqID($('#myGrid')[0].deviceId)
@@ -617,9 +704,9 @@
 																: 'desc'))
 										.hide();
 							});
-
+			/*********************************End show current sortable icon *************************************/
 			$('#myGrid').jqGrid('sortableRows');//Enables sortable rows
-			
+
 			var height = window.innerHeight;
 			$('#myGrid').jqGrid('setGridHeight', 347);
 			$("#myGrid").jqGrid('navGrid', '#pager', {
@@ -642,7 +729,26 @@
 				showQuery : false, /* To show query fired */
 				overlay : 0
 			});
-
+			
+			/*****************Start Column chooser (requires ui.multiselect.css/js) **************************************/
+			$('#myGrid').navButtonAdd (
+	                '#pager',
+	                 {
+	                     caption: "", buttonicon: "ui-icon-calculator", title: "choose columns",
+	                     onClickButton: function() {
+	                    	 $('#myGrid').jqGrid('columnChooser', {
+	                                 done: function(perm) {
+	                                     if (perm) {
+	                                    	 $('#myGrid').jqGrid("remapColumns", perm, true);
+	                                     } else {
+	                                     }
+	                                 }
+	                             }
+	                         );
+	                    }
+	                 });
+			/*****************End Column chooser (requires ui.multiselect.css/js) **************************************/
+			
 			$("#myGrid").navButtonAdd(
 					'#pager',
 					{
@@ -732,7 +838,7 @@
 							'new',
 							{
 								url : './person/saveNewPerson.json',
-								
+
 								editData : {
 
 								},
@@ -742,6 +848,8 @@
 								},
 								recreateForm : true,
 								beforeShowForm : function(form) {
+									
+
 									$('#pData').hide();
 									$('#nData').hide();
 									var dlgDiv = $("#editmod" + "myGrid");
@@ -818,6 +926,15 @@
 									},
 									recreateForm : true,
 									beforeShowForm : function(form) {
+										/***********************start gray out read-only fields**********************/
+										form.find(".FormElement[readonly]")
+			                            .prop("disabled", true)
+			                            .addClass("ui-state-disabled")
+			                            .closest(".DataTD")
+			                            .prev(".CaptionTD")
+			                            .prop("disabled", true)
+			                            .addClass("ui-state-disabled")
+			                            /***********************end gray out read-only fields************************/
 										$('#pData').hide();
 										$('#nData').hide();
 										var dlgDiv = $("#editmod" + "myGrid");
@@ -986,7 +1103,7 @@
 				});
 			}
 		}
-		
+
 		function checkNameForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Enter name" ];
@@ -995,7 +1112,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkPasswordForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Enter password" ];
@@ -1004,7 +1121,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkGenderForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Select gender" ];
@@ -1013,7 +1130,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkBirthDateForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Select birth date from date picker" ];
@@ -1022,16 +1139,16 @@
 			}
 			return result;
 		}
-		
+
 		function checkMobileNumberForEmpty(value, colname) {
-			if (value == '') {			
+			if (value == '') {
 				result = [ false, "Enter mobile number" ];
 			} else {
 				result = [ true, "" ];
 			}
 			return result;
 		}
-		
+
 		function checkDesignationForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Enter designation" ];
@@ -1040,7 +1157,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkStateForEmpty(value, colname) {
 			if (value == 'Select State') {
 				result = [ false, "Select state" ];
@@ -1049,7 +1166,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkCityForEmpty(value, colname) {
 			if (value == 'Select City') {
 				result = [ false, "Select city" ];
@@ -1058,7 +1175,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkPostalCodeForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Enter postal code" ];
@@ -1067,7 +1184,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkGitUrlForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Enter GitHub URL" ];
@@ -1076,7 +1193,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkSkillsForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Select your skills" ];
@@ -1085,7 +1202,7 @@
 			}
 			return result;
 		}
-		
+
 		function checkProjectValueForEmpty(value, colname) {
 			if (value == '') {
 				result = [ false, "Enter your project's value" ];
@@ -1094,40 +1211,38 @@
 			}
 			return result;
 		}
-		
+
 		function checkEmailIdForUnique(value, colname) {
 			var row = $('#myGrid').jqGrid('getGridParam', 'selrow');
 
 			if (value == '') {
 				result = [ false, "Email ID is must." ];
 			} else if (row == null) {
-				$
-						.ajax({
-							url : './person/checkEmailIdForUnique.json',
-							data : {
-								personEmailId : value
-							},
-							async : false,
-							type : 'POST',
-							datatype : 'text',
-							success : function(data) {
-								if (data) {
-									result = [ false, "Email ID must be unique." ];
-								} else if (!data) {
-									result = [ true, "" ];
-								} else {
-									result = [ false, "Server encountered a problem" ];
-								}
-							}
-						})
+				$.ajax({
+					url : './person/checkEmailIdForUnique.json',
+					data : {
+						personEmailId : value
+					},
+					async : false,
+					type : 'POST',
+					datatype : 'text',
+					success : function(data) {
+						if (data) {
+							result = [ false, "Email ID must be unique." ];
+						} else if (!data) {
+							result = [ true, "" ];
+						} else {
+							result = [ false, "Server encountered a problem" ];
+						}
+					}
+				})
 			} else {
 				result = [ true, "" ];
 			}
 
 			return result;
 		}
-
 	</script>
-	
+
 </body>
 </html>

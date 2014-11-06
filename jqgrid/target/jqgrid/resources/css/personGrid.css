@@ -21,6 +21,29 @@
     margin: 0;
 }
 
+/* To change position of sort icon to display it with custom button in column header */
+.ui-jqgrid .ui-jqgrid-labels .s-ico .ui-grid-ico-sort {
+    margin-top: 0px;
+    padding-left: 16px;
+    margin-left: 29px;
+}
+
+/* changing icon of sort icon also makes the header icons red */
+.searchResults .ui-state-default .ui-grid-ico-sort.ui-icon {
+    background-image: url("../images/ui-icons_cd0a0a_256x240.png");
+}
+
+/* centers the icons when only one icon is showing and the other is hidden */
+.searchResults .ui-jqgrid .ui-icon-asc, .searchResults .ui-jqgrid .ui-icon-desc {
+    height:12px;
+    margin-top:0px;
+}
+
+/* hides the inactive sort icon */
+.searchResults .ui-state-disabled.ui-icon-desc, .searchResults .ui-state-disabled.ui-icon-asc {
+    display: none;
+}
+
 /* Grid table tag */
 table {
 	font-size: 1em;
