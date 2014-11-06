@@ -27,6 +27,8 @@ Compatibility/Tested:
 
 Simply clone, or download and unzip this repository and import it to eclipse as explained above. The relevant sections have been commented and explained in later sections of this file.
 
+### Development
+
 Requirements:
 * [JQGrid](https://github.com/tonytomov/jqGrid)
 * [Boostrap](http://getbootstrap.com/)
@@ -36,6 +38,8 @@ The project uses:
 * [Maven](http://maven.apache.org/)
 * [Hibernate](http://hibernate.org/) 
 * [Spring Data JPA](http://projects.spring.io/spring-data/)
+
+![Screenshot](http://i1272.photobucket.com/albums/y389/harshal091/Github/JQGridStartTheme_zps4d4aa4d2.png)
 
 ###Features Integrated in example
 
