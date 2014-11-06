@@ -212,7 +212,7 @@
 																		// add "ui-widget" class to have the same font-family like in jQuery UI Theme
 																		// add "ui-jqdialog" class to have font-size:11px like in other items of jqGrid form
 																		dropdownCssClass : "ui-widget ui-jqdialog"
-																	});
+															});
 												}
 
 											},
@@ -663,7 +663,7 @@
 									});
 								},
 								loadComplete : function() {
-									 // 1 is zero-base index of the column personName. Every from the options
+									// 1 is zero-based index of the column personName. Every from the options
 				                    // multiselect:true, rownumbers:true and subGrid:true will increase
 				                    // the index by 1 because the option inserts additional columns
 				                    $("#6 td:eq(1)", $('#myGrid')[0]).css({color:'red'});

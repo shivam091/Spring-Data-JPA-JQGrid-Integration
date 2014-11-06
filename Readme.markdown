@@ -39,6 +39,39 @@ The project uses:
 * [Hibernate](http://hibernate.org/) 
 * [Spring Data JPA](http://projects.spring.io/spring-data/)
 
+##Downloads
+Source is hosted at the [Spring-Data-JPA-JQGrid-Integration GitHub repository](https://github.com/shivam091/Spring-Data-JPA-JQGrid-Integration.git). 
+Downloads are also available on the [GitHub project's Downloads section] (https://github.com/shivam091/Spring-Data-JPA-JQGrid-Integration/archive/master.zip)
+
+##Dependencies
+######javax.servlet-api:3.0.4
+######servlet-api:2.5
+######jsp-api:2.1
+######jstl:1.2
+######cglib-nodep:2.2
+######commons-dbcp:1.4
+######javassist:3.12.1.GA
+######jackson-mapper-asl:1.9.9
+######jackson-core-asl:1.9.9
+######jackson-databind:2.3.2
+######jackson-annotations:2.3.0
+######spring-context:4.0.1.RELEASE
+######spring-core:4.0.1.RELEASE
+######spring-web:4.0.1.RELEASE
+######spring-webmvc:4.0.1.RELEASE
+######spring-orm:4.0.1.RELEASE
+######spring-tx:4.0.1.RELEASE
+######spring-jdbc:4.0.1.RELEASE
+######spring-test:4.0.1.RELEASE
+######spring-data-jpa:1.4.1.RELEASE
+######hibernate-entitymanager:4.3.5.Final
+######hibernate-core:3.6.5.Final
+######hibernate-validator:4.1.0.Final
+######mysql-connector-java:5.1.22
+######dom4j:1.5
+######commons-io2.4
+######commons-fileupload:1.3
+
 ![Screenshot](http://i1272.photobucket.com/albums/y389/harshal091/Github/JQGridStartTheme_zps4d4aa4d2.png)
 
 ###Features Integrated in example
@@ -156,6 +189,18 @@ We can easily achive this by following additions:
 		...,
 		...,
 		...,
+		onSortCol : function(index, idxcol, sortorder) {
+			var $icons = $(this.grid.headers[idxcol].el).find(">div.ui-jqgrid-sortable>span.s-ico");
+			if (this.p.sortorder === 'asc') {
+				//$icons.find('>span.ui-icon-asc').show();
+				$icons.find('>span.ui-icon-asc')[0].style.display = "";
+				$icons.find('>span.ui-icon-desc').hide();
+			} else {
+				//$icons.find('>span.ui-icon-desc').show();
+				$icons.find('>span.ui-icon-desc')[0].style.display = "";
+				$icons.find('>span.ui-icon-asc').hide();
+			}
+		},
 	});
 	
 	$('#gbox_'+ $.jgrid.jqID($('#myGrid')[0].deviceId) + 
@@ -624,4 +669,542 @@ We can apply animation effects to modal dialogs in the grid by writting followin
 
 #### Column Chooser
 
+We can limit number of columns to be displayed in the grid by using column chooser. To have column chooser in our grid, we must first import ui.multiselect.js and ui.multiselect.css in our main script. After importing these two files, we must add following script snippet to our grid:
 
+```HTML
+	$('#grid_id').navButtonAdd (
+	'#pager', {
+	       caption: "", 
+		buttonicon: "ui-icon-calculator", 
+		title: "Choose columns",
+	        onClickButton: function() {
+	                $('#grid_id').jqGrid('columnChooser', {
+			done: function(perm) {
+				if (perm) {
+	                        $('#grid_id').jqGrid("remapColumns", perm, true);
+	                        } else {
+	                        }
+	                }
+	         }
+		);
+	}
+	});
+```
+
+This will add custom icon to pager and clicking on it, will launch column chooser.
+
+####Changing font-size of modal dialogs
+
+We can change font-size of modal dialogs by simply adding following CSS snipet to our custom CSS file.
+
+```HTML
+	/* To change font size of edit form */
+	.ui-jqdialog {
+		font-size: 10px; //font-size (whatever you feel good)
+	}
+```
+####Subgrid support
+
+We can have any number of grids within main grid. Here we have only one grid within our main grid. To have subgrid, we need set *subgrid : true* and *subGridRowExpanded : function (subgrid_id, row_id)* as shown in following script snippet:
+
+```HTML
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : [
+		],
+		colModel : [
+		],
+		...,
+		...,
+		...,
+		...,
+		subGrid: true,
+		subGridRowExpanded: function(subgrid_id, row_id) {
+		/* any data or even a grid just like main grid */
+		/* in our example following--> */
+			var personName = $('#grid_id').jqGrid('getCell', row_id, 'personName');
+			var personBirthDate = $('#grid_id').jqGrid('getCell', row_id, 'personBirthDate');
+			var personEmailId = $('#grid_id').jqGrid('getCell', row_id, 'personEmailId');
+			var personMobileNumber = $('#grid_id').jqGrid('getCell', row_id, 'personMobileNumber');
+			var personDesignation = $('#grid_id').jqGrid('getCell', row_id, 'personDesignation');
+			var personState = $('#grid_id').jqGrid('getCell', row_id, 'personState');
+			var personCity = $('#grid_id').jqGrid('getCell', row_id, 'personCity');
+			var personPostalCode = $('#grid_id').jqGrid('getCell', row_id, 'personPostalCode');
+			var personGitUrl = $('#grid_id').jqGrid('getCell', row_id, 'personGitUrl');
+			var personSkills = $('#grid_id').jqGrid('getCell', row_id, 'personSkills');
+			var personProjectValue = $('#grid_id').jqGrid('getCell', row_id, 'personProjectValue');
+							            	
+			var html = '<p style="font-size:15px"><b>Person details from main grid</b></p>' +					        '<table border="2" width="350">' +
+				'<tr><td style="width:90px">' + '' + 'Name</td>' +
+				'<td>' + personName + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Birth Date</td>' +
+				'<td>' + personBirthDate + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Email ID</td>' +
+				'<td>' + personEmailId + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Mobile Number</td>' +
+				'<td>' + personMobileNumber + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Gender</td>' +
+				'<td>' + personGender + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Designation</td>' +
+				'<td>' + personDesignation + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'State</td>' +					                			
+				'<td><a href=https://en.wikipedia.org/wiki/' + personState + '>'+ personState + '</a></td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'City</td>' +
+				'<td><a href=https://en.wikipedia.org/wiki/' + personCity + '>'+ personCity + '</a></td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Postal Code</td>' +
+				'<td>' + personPostalCode + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Skills</td>' +
+				'<td>' + personSkills + '</td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'GitHub URL</td>' +
+				'<td><a href=' + personGitUrl + '>'+ personGitUrl + '</a></td></tr>' +
+				'<tr><td style="width:90px">' + '' + 'Project Value</td>' +
+				'<td>' + personProjectValue + '</td></tr>' +
+				'</table>'
+				
+				$("#" + subgrid_id).append(html);
+			},
+	});
+```
+![Screenshot](http://i1272.photobucket.com/albums/y389/harshal091/Github/SubGridSupport_zpsb8844832.png)
+
+####Setting default filters in search toolbar
+
+We can have default value in search toolbar by just adding small script snippet to column model as follows:
+
+```HTML
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : ['Mobile Number',...,
+		],
+		colModel : [ {
+			name : '',
+			index : '',
+			editrules : {
+			},
+			editoptions : {
+			},
+			searchoptions : {
+				$(el).val("1234567890"); //default value in search toolbar field
+				setTimeout(function() { //focusing field
+					$(el).focus().trigger({
+						type : 'keypress',
+						charCode : 13
+					});
+				}, 20);
+			},
+		},],
+		...,
+		...,
+		...,
+		...,
+	});
+```
+
+####Graying out read-only fields in modal dialogs
+
+By default, all the fields in modal dialog have no specific color to realize that they are read-only. We can gray out read-only fields while editing row to realize that these fields are ready only. We can add following script snippet (generally while editing row in modal dialog) to *beforeShowForm* as shown below:
+
+```HTML
+	beforeShowForm : function(form) {
+		form.find(".FormElement[readonly]").prop("disabled", true).addClass("ui-state-disabled")
+			.closest(".DataTD").prev(".CaptionTD").prop("disabled", true).addClass("ui-state-disabled")
+	},
+```
+
+#### Adding required field (*) notation in modal dialog
+
+We can add red asterik (*) in our modal dialog to indicate that perticular field is mandatory while editing.
+We can achive this by adding small script snippet to out column model as follows:
+
+```HTML
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : ['Mobile Number',...,
+		],
+		colModel : [ {
+			name : '',
+			index : '',
+			editrules : {
+			},
+			editoptions : {
+			},
+			formoptions : {
+				elmprefix : "<br><span class='' style='color:red;'>&nbsp;*&nbsp;</span>",
+				elmsuffix : "<span id='required' style='color:red;'><br>&nbsp;&nbsp;&nbsp;&nbsp;(must be unique)</span>",
+				label : "<span>Email ID</span><span style='float:right'></span>"
+			},
+			searchoptions : {
+			},
+		},],
+		...,
+		...,
+		...,
+		...,
+	});
+```
+
+#### Adding custom button to pager
+
+We can add custom button to pager just by adding following script snippet to our main script:
+
+```HTML
+	autoedit : false;
+	...
+	...
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : [
+		],
+		colModel : [
+		],
+		...,
+		...,
+		loadtext : '',
+		...,
+		...,
+	});
+	...
+	...
+	...
+	$("#grid_id").jqGrid('navGrid', '#pager', {
+		cloneToTop:true,
+		edit : false,
+		view : true,
+		add : false,
+		del : false,
+		search : false,
+		refresh : true
+		}, {}, {}, {}, {
+		...
+		...
+	});
+	...
+	...
+	$("#pager_left table.navtable tbody tr").append(
+	  '<td class="ui-pg-button ui-corner-all">' +
+	  '<div class="ui-pg-div my-nav-checkbox">' +
+	  '<input tabindex="-1" type="checkbox" id="AutoEdit" />' +
+	  '<label title="Check caption which should appear as button tooltip"' +
+	  ' for="AutoEdit">Autoedit</label></div></td>'
+	);
+	$("#AutoEdit").button({
+		text: false,
+		icons: {
+		     primary: "ui-icon-mail-closed"
+		}
+	}).click(function () {
+		var iconClass;
+		if ($(this).is(':checked')) {
+		     autoedit = true;
+		     iconClass = "ui-icon-mail-open";
+		} else {
+		     autoedit = false;
+		     iconClass = "ui-icon-mail-closed";
+		}
+	$(this).button("option", {icons: {primary: iconClass}});
+	});
+```
+
+and following CSS snippet:
+
+```HTML
+	/* some settings to place Button in jqGrid */
+	.ui-jqgrid .ui-pg-table .my-nav-checkbox {
+		margin: 0px;
+		padding: 0px;
+		float: left;
+		height: 18px
+	}
+	
+	.ui-jqgrid .ui-pg-table .my-nav-checkbox>input {
+		padding: 1px;
+	}
+	
+	.ui-jqgrid .ui-pg-table .my-nav-checkbox>label {
+		margin: 0px;
+		border-width: 0px;
+	}
+	
+	.ui-jqgrid .ui-pg-table .my-nav-checkbox:hover>label {
+		margin: 0px;
+		border-width: 1px;
+	}
+	
+	/* fixing CSS of jQuery UI Buttons */
+	.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-text {
+		margin: 0px;
+		padding: 1px 2px 1px 16px;
+	}
+	
+	.ui-button-icon-only {
+		width: 16px;
+	}
+	
+	.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-icon-primary {
+		margin: -8px 0px 0px -8px;
+	}
+```
+
+If we want to display this icon in top pager then we must set *toppager* to true.
+
+Following script snippet is needed to be added instead of above script:
+
+```HTML
+	autoedit : false;
+	...
+	...
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : [
+		],
+		colModel : [
+		],
+		...,
+		...,
+		loadtext : '',
+		toppager : true,
+		...,
+		...,
+	});
+	...
+	...
+	...
+	$("#grid_id").jqGrid('navGrid', '#pager', {
+		cloneToTop:true,
+		edit : false,
+		view : true,
+		add : false,
+		del : false,
+		search : false,
+		refresh : true
+		}, {}, {}, {}, {
+		...
+		...
+	});
+	...
+	...
+	$("#pager_left table.navtable tbody tr").append(
+	  '<td class="ui-pg-button ui-corner-all">' +
+	  '<div class="ui-pg-div my-nav-checkbox">' +
+	  '<input tabindex="-1" type="checkbox" id="AutoEdit" />' +
+	  '<label title="Check caption which should appear as button tooltip"' +
+	  ' for="AutoEdit">Autoedit</label></div></td>'
+	);
+	$("#AutoEdit").button({
+		text: false,
+		icons: {
+		     primary: "ui-icon-mail-closed"
+		}
+	}).click(function () {
+		var iconClass;
+		if ($(this).is(':checked')) {
+		     autoedit = true;
+		     iconClass = "ui-icon-mail-open";
+		} else {
+		     autoedit = false;
+		     iconClass = "ui-icon-mail-closed";
+		}
+	$(this).button("option", {icons: {primary: iconClass}});
+	});
+```
+
+and CSS snippet will be as follow:
+
+```HTML
+	/* fix some common problems in the toppager */
+	.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div {
+		padding: 1px 0;
+		float: left;
+		position: relative;
+	}
+	
+	.ui-jqgrid .ui-jqgrid-toppager .ui-pg-button {
+		height: 18px !important;
+		cursor: pointer;
+	}
+	
+	.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
+		float: left;
+		margin: 0 2px;
+	}
+```
+
+#### Display custom icons in grid
+
+We can have custom icons in our grid (as shown in schreenshot in Gender column) based on some conditions.
+We can do this by adding *formatter* to our column model as:
+
+```HTML
+		$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : ['Gender',...,
+		],
+		colModel : [ {
+			name : '',
+			index : '',
+			editrules : {
+			},
+			editoptions : {
+				value : ":Select Gender;Male:Male;Female:Female",
+			},
+			formatter: function (cellvalue, options, rowObject){
+				if (cellvalue === 'Male') {
+					 return "<img src='https://cdn1.iconfinder.com/data/icons/IconsLandVistaPeopleIconsDemo/256/Client_Male_Dark.png' height='30px' width='30px'></img>";
+				} else if (cellvalue === 'Female') {
+					return "<img src='http://icons.ae/images/icons/Professional%20Vista%20Software%20Icons/Business%20Lady%20Red%20Female/256x256/Business%20Lady%20Red%20Female.jpg' height='30px' width='30px'></img>";
+				} else {
+					return "<span class='ui-icon ui-icon-trash'></span>";
+				}
+			},
+			formoptions : {
+				elmprefix : "<br><span class='' style='color:red;'>&nbsp;*&nbsp;</span>",
+				elmsuffix : "<span id='required' style='color:red;'><br>&nbsp;&nbsp;&nbsp;&nbsp;(must be unique)</span>",
+				label : "<span>Gender</span><span style='float:right'></span>"
+			},
+			searchoptions : {
+			},
+		},],
+		...,
+		...,
+		...,
+		...,
+	});
+```
+
+#### Cell coloring
+
+We can change color of cells by different ways and different conditions. Look at the following script snippet and provided screenshow for better understanding :
+
+```HTML
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : [
+		],
+		colModel : [
+		],
+		...,
+		...,
+		...,
+		...,
+		loadComplete : function() {
+			// 1 is zero-based index of the column personName. Every from the options
+			// multiselect:true, rownumbers:true and subGrid:true will increase
+			// the index by 1 because the option inserts additional columns
+			$("#6 td:eq(1)", $('#grid_id')[0]).css({color:'red'});
+			$('#grid_id').jqGrid('setCell',"12","personName","",{color:'red'});
+			$('#grid_id').jqGrid('setCell',"12",'personBirthDate', '', 'my-highlight');
+			$('#grid_id').jqGrid('setCell',"12","personMobileNumber","",{'background-color':'yellow', 'background-image':'none'});
+			$('#grid_id').jqGrid('setCell',"12","personEmailId","",'ui-state-highlight');
+		}
+	});
+```
+
+Following CSS is needed to have cell coloring:
+
+```HTML
+	.my-highlight { 
+		color: red; 
+	}
+	
+	span.cellWithoutBackground {
+		display: block;
+		background-image: none;
+		margin-right: -2px;
+		margin-left: -2px;
+		height: 14px;
+		padding: 4px;
+	}
+```
+
+####Client/Server side validations
+
+We can perform custom validations as well as use in-build validators to perform validations in grid. The recommended way, but is the custom validations as using them, we can provide custom validation rules and custom messages when validations fail. The thing to do is little bit different but easy. We need to set *custom* to true and must provide custom function name in *custom_func* of *editrules*. Lets take a look at simple client side validation script snippet.
+
+**Client side validation**
+
+```HTML
+	$('#grid_id').jqGrid({
+		...,
+		...,
+		colNames : ['Gender',...,
+		],
+		colModel : [ {
+			name : '',
+			index : '',
+			editrules : {
+				custom : true,
+				custom_func : checkGenderForEmpty
+			},
+			editoptions : {
+				value : ":Select Gender;Male:Male;Female:Female",
+			},
+			formoptions : {
+				elmprefix : "<br><span class='' style='color:red;'>&nbsp;*&nbsp;</span>",
+				elmsuffix : "<span id='required' style='color:red;'><br>&nbsp;&nbsp;&nbsp;&nbsp;(must be unique)</span>",
+				label : "<span>Gender</span><span style='float:right'></span>"
+			},
+			searchoptions : {
+			},
+		},],
+		...,
+		...,
+		...,
+		...,
+		
+		function checkGenderForEmpty(value, colname) {
+			if (value == '') {
+				result = [ false, "Select gender" ];
+			} else {
+				result = [ true, "" ];
+			}
+			return result;
+		}
+	});
+```
+
+when this validation fails, we will get *'Select gender'* as an error message but if we couldn't used custom
+validators (*'required ; true '* in case of *'custom : false'*) we could get error message as *'Gender:Field is
+required'*.
+
+**Server Side Validation**
+```HTML
+	function checkEmailIdForUnique(value, colname) {
+		var row = $('#myGrid').jqGrid('getGridParam', 'selrow');
+	
+		if (value == '') {
+			result = [ false, "Email ID is must." ];
+		} else if (row == null) {
+			$.ajax({
+				url : './person/checkEmailIdForUnique.json',
+				data : {
+					personEmailId : value
+				},
+				async : false,
+				type : 'POST',
+				datatype : 'text',
+				success : function(data) {
+					if (data) {
+						result = [ false, "Email ID must be unique." ];
+					} else if (!data) {
+						result = [ true, "" ];
+					} else {
+						result = [ false, "Server encountered a problem" ];
+					}
+				}
+			})
+		} else {
+			result = [ true, "" ];
+		}
+	
+		return result;
+	}
+```
+
+Above is the code snippet to perform server side validation. The above snippet shows how to validate *Email ID* to check whether it is unique or not. URL mensioned in the snippet will hit server to perform validation and procedure to call it is same as that of client side validations.
