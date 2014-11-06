@@ -4,44 +4,51 @@
 
 /* Grid layout */
 .ui-jqgrid .ui-pg-selbox {
-    display: block;
-    font-size: 0.8em;
-    height: 20px;
-    line-height: 18px;
-    margin: 0;
-    width: 50px;
-    padding: 0px 0px 0px 0px;
-    text-align: center;
+	display: block;
+	font-size: 0.8em;
+	height: 20px;
+	line-height: 18px;
+	margin: 0;
+	width: 50px;
+	padding: 0px 0px 0px 0px;
+	text-align: center;
 }
 
 .ui-jqgrid .ui-pg-input {
-    font-size: 0.8em;
-    height: 10px;
-    width: 10px;
-    margin: 0;
+	font-size: 0.8em;
+	height: 10px;
+	width: 10px;
+	margin: 0;
+}
+
+/* To change font size of edit form */
+.ui-jqdialog {
+	font-size: 10px;
 }
 
 /* To change position of sort icon to display it with custom button in column header */
 .ui-jqgrid .ui-jqgrid-labels .s-ico .ui-grid-ico-sort {
-    margin-top: 0px;
-    padding-left: 16px;
-    margin-left: 29px;
+	margin-top: 0px;
+	padding-left: 16px;
+	margin-left: 29px;
 }
 
 /* changing icon of sort icon also makes the header icons red */
 .searchResults .ui-state-default .ui-grid-ico-sort.ui-icon {
-    background-image: url("../images/ui-icons_cd0a0a_256x240.png");
+	background-image: url("../images/ui-icons_cd0a0a_256x240.png");
 }
 
 /* centers the icons when only one icon is showing and the other is hidden */
-.searchResults .ui-jqgrid .ui-icon-asc, .searchResults .ui-jqgrid .ui-icon-desc {
-    height:12px;
-    margin-top:0px;
+.searchResults .ui-jqgrid .ui-icon-asc, .searchResults .ui-jqgrid .ui-icon-desc
+	{
+	height: 12px;
+	margin-top: 0px;
 }
 
 /* hides the inactive sort icon */
-.searchResults .ui-state-disabled.ui-icon-desc, .searchResults .ui-state-disabled.ui-icon-asc {
-    display: none;
+.searchResults .ui-state-disabled.ui-icon-desc, .searchResults .ui-state-disabled.ui-icon-asc
+	{
+	display: none;
 }
 
 /* Grid table tag */
@@ -63,8 +70,8 @@ input[type="password"] {
 }
 
 input, textarea, .uneditable-input {
-    margin-bottom: 10px;
-    /* margin-left: 5px; */
+	margin-bottom: 10px;
+	/* margin-left: 5px; */
 }
 
 select {
@@ -87,8 +94,8 @@ select {
 
 .ui-jqdialog-content .DataTD {
 	border: 0 none;
-    padding: 6px;
-    vertical-align: top;
+	padding: 6px;
+	vertical-align: top;
 }
 
 .DataTD form-view-data ui-helper-reset ui-widget-content {
@@ -97,20 +104,20 @@ select {
 
 /* Row height in grid*/
 
-
 /* Display loading Image when reloading grid */
 .ui-jqgrid .loading {
-            background: url(../../img/ajax-loader.gif) repeat transparent;
-            background-color: transparent;
-            border-style: none;
-            background-repeat: no-repeat;
-            height: 200px;
-            width: 100px;
+	background: url(../../img/ajax-loader.gif) repeat transparent;
+	background-color: transparent;
+	border-style: none;
+	background-repeat: no-repeat;
+	height: 200px;
+	width: 100px;
 }
 
 /* Add & Edit Modal Dialog */
 #personBirthDate {
-	width: 140px; /* To decrease size of field to avoid wrapping of fields */
+	width: 140px;
+	/* To decrease size of field to avoid wrapping of fields */
 }
 
 /* Fields in Grid */
@@ -119,4 +126,108 @@ select {
 	width: 163px;
 }
 
+/* Setting background color for cell based on condition */
+span.cellWithoutBackground {
+	display: block;
+	background-image: none;
+	margin-right: -2px;
+	margin-left: -2px;
+	height: 14px;
+	padding: 4px;
+}
+
 /* Fields of search tool bar */
+#gs_personId {
+	height: 25px;
+	text-align: center;
+}
+
+#gs_personBirthDate {
+	text-align: center;
+}
+
+#gs_personMobileNumber {
+	height: 25px;
+	text-align: center;
+}
+
+#gs_personEmailId {
+	height: 25px;
+	text-align: center;
+}
+
+#gs_personDesignation {
+	height: 25px;
+	text-align: center;
+}
+
+#gs_personPostalCode {
+	height: 25px;
+	text-align: center;
+}
+
+#gs_personGitUrl {
+	height: 25px;
+	text-align: center;
+}
+
+#gs_personProjectValue {
+	height: 25px;
+	text-align: center;
+}
+
+/* fix some common problems in the toppager */
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div {
+	padding: 1px 0;
+	float: left;
+	position: relative;
+}
+
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-button {
+	height: 18px !important;
+	cursor: pointer;
+}
+
+.ui-jqgrid .ui-jqgrid-toppager .ui-pg-div span.ui-icon {
+	float: left;
+	margin: 0 2px;
+}
+/* some settings to place Button in jqGrid */
+.ui-jqgrid .ui-pg-table .my-nav-checkbox {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	height: 18px
+}
+
+.ui-jqgrid .ui-pg-table .my-nav-checkbox>input {
+	padding: 1px;
+}
+
+.ui-jqgrid .ui-pg-table .my-nav-checkbox>label {
+	margin: 0px;
+	border-width: 0px;
+}
+
+.ui-jqgrid .ui-pg-table .my-nav-checkbox:hover>label {
+	margin: 0px;
+	border-width: 1px;
+}
+/* fixing CSS of jQuery UI Buttons */
+.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-text {
+	margin: 0px;
+	padding: 1px 2px 1px 16px;
+}
+
+.ui-button-icon-only {
+	width: 16px;
+}
+
+.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-icon-primary {
+	margin: -8px 0px 0px -8px;
+}
+
+/* Cell coloring */
+.my-highlight { 
+	color: red; 
+}

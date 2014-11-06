@@ -39,7 +39,6 @@ public class PersonEntity implements Serializable {
 	@Column(name = "PERSON_BIRTH_DATE")
 	private String personBirthDate;
 	
-	@NotEmpty
 	@Column(name = "PERSON_DESIGNATION")
 	private String personDesignation;
 	

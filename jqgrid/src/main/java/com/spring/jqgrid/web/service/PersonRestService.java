@@ -92,7 +92,7 @@ public class PersonRestService {
 			@RequestParam(value = "personBirthDate", required = true) String personBirthDate,
 			@RequestParam(value = "personMobileNumber", required = true) String personMobileNumber,
 			@RequestParam(value = "personEmailId", required = true) String personEmailId,
-			@RequestParam(value = "personDesignation", required = true) String personDesignation,
+			@RequestParam(value = "personDesignation", required = true, defaultValue = "") String personDesignation,
 			@RequestParam(value = "personState", required = true) String personState,
 			@RequestParam(value = "personCity", required = true) String personCity,
 			@RequestParam(value = "personPostalCode", required = true) String personPostalCode,
@@ -132,7 +132,7 @@ public class PersonRestService {
 			@RequestParam(value = "personBirthDate", required = true) String personBirthDate,
 			@RequestParam(value = "personMobileNumber", required = true) String personMobileNumber,
 			@RequestParam(value = "personEmailId", required = true) String personEmailId,
-			@RequestParam(value = "personDesignation", required = true) String personDesignation,
+			@RequestParam(value = "personDesignation", required = true, defaultValue = "") String personDesignation,
 			@RequestParam(value = "personState", required = true) String personState,
 			@RequestParam(value = "personCity", required = true) String personCity,
 			@RequestParam(value = "personPostalCode", required = true) String personPostalCode,
@@ -222,7 +222,7 @@ public class PersonRestService {
 	@RequestMapping(value = "/getSkillsList.json", produces = "application/json", method = RequestMethod.GET)
 	private @ResponseBody String getSkillsList() {
 		String skills = "<select>"
-				+ "<option value='Accounting Fees'>C</option>"
+				+ "<option value='C'>C</option>"
 				+ "<option value='C++'>C++</option>"
 				+ "<optgroup label='J2SE'>"
 				+ "<option value='Multithreading'>Multithreading</option>"
