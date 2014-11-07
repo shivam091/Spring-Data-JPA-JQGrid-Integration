@@ -138,7 +138,7 @@ public class PersonRestService {
 			@RequestParam(value = "personPostalCode", required = true) String personPostalCode,
 			@RequestParam(value = "personGitUrl", required = true) String personGitUrl,
 			@RequestParam(value = "personSkills", required = true) String personSkills,
-			@RequestParam(value = "personProjectValue", required = true,  defaultValue = "0.0") String personProjectValue) {
+			@RequestParam(value = "personProjectValue", required = true, defaultValue = "0.0") String personProjectValue) {
 
 		PersonEntity personEntity = personService.findPersonById(personId);
 		if (personEntity == null) {
@@ -221,8 +221,7 @@ public class PersonRestService {
 
 	@RequestMapping(value = "/getSkillsList.json", produces = "application/json", method = RequestMethod.GET)
 	private @ResponseBody String getSkillsList() {
-		String skills = "<select>"
-				+ "<option value='C'>C</option>"
+		String skills = "<select>" + "<option value='C'>C</option>"
 				+ "<option value='C++'>C++</option>"
 				+ "<optgroup label='J2SE'>"
 				+ "<option value='Multithreading'>Multithreading</option>"

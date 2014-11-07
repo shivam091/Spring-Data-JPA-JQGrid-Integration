@@ -214,7 +214,8 @@ span.cellWithoutBackground {
 	border-width: 1px;
 }
 /* fixing CSS of jQuery UI Buttons */
-.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-text {
+.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-text
+	{
 	margin: 0px;
 	padding: 1px 2px 1px 16px;
 }
@@ -223,11 +224,12 @@ span.cellWithoutBackground {
 	width: 16px;
 }
 
-.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-icon-primary {
+.ui-jqgrid .ui-pg-table .my-nav-checkbox>.ui-button>span.ui-button-icon-primary
+	{
 	margin: -8px 0px 0px -8px;
 }
 
 /* Cell coloring */
-.my-highlight { 
-	color: red; 
+.my-highlight {
+	color: red;
 }

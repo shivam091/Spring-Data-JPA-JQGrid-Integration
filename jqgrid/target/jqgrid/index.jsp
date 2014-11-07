@@ -31,7 +31,9 @@
 	<fieldset style="float: left; height: 510px; width: 1280px;"
 		class="ui-widget-content ui-corner-all ui-jqgrid">
 		<legend class="ui-widget-header ui-corner-top" style="font-size: 14px">Person
-			Master</legend><br><br>
+			Master</legend>
+		<br>
+		<br>
 		<!-- Grid code starts here -->
 		<div id='jqgrid' style="">
 			<table id='myGrid'></table>
@@ -52,7 +54,7 @@
 		src="${pageContext.request.contextPath}/resources/js/i18n/grid.locale-en.js" /></script>
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/i18n/grid.locale-en.js" /></script>
-		
+
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/jquery.jqGrid.min.js" /></script>
 
@@ -60,6 +62,8 @@
 		src="${pageContext.request.contextPath}/resources/js/jquery.maskedinput-1.3.js" /></script>
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/bootstrap/select2.js" /></script>
+	<script type='text/javascript'
+		src="${pageContext.request.contextPath}/resources/js/personMasterGrid-validations.js" /></script>
 	<script type='text/javascript'
 		src="${pageContext.request.contextPath}/resources/js/personMasterGrid.js" /></script>
 

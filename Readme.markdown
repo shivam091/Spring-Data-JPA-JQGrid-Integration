@@ -693,6 +693,8 @@ We can limit number of columns to be displayed in the grid by using column choos
 
 This will add custom icon to pager and clicking on it, will launch column chooser.
 
+![Screenshot](http://i1272.photobucket.com/albums/y389/harshal091/Github/ColumnChooserSupport_zps2224ddea.png)
+
 ####Changing font-size of modal dialogs
 
 We can change font-size of modal dialogs by simply adding following CSS snipet to our custom CSS file.
@@ -1208,3 +1210,4 @@ required'*.
 ```
 
 Above is the code snippet to perform server side validation. The above snippet shows how to validate *Email ID* to check whether it is unique or not. URL mensioned in the snippet will hit server to perform validation and procedure to call it is same as that of client side validations.
+
