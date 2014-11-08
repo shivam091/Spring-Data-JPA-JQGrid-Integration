@@ -154,7 +154,7 @@ We can change default left position of modal dialogs to whereever we want by add
 	beforeShowForm : function(form) {
 		$('#pData').hide();
 		$('#nData').hide();
-		var dlgDiv = $("#editmod" + "myGrid");
+		var dlgDiv = $("#editmod" + "grid_id");
 		var parentDiv = dlgDiv.parent();
 		var dlgWidth = dlgDiv.width();
 		var parentWidth = parentDiv.width();
@@ -203,11 +203,11 @@ We can easily achive this by following additions:
 		},
 	});
 	
-	$('#gbox_'+ $.jgrid.jqID($('#myGrid')[0].deviceId) + 
+	$('#gbox_'+ $.jgrid.jqID($('#grid_id')[0].deviceId) + 
 	' tr.ui-jqgrid-labels th.ui-th-column>div.ui-jqgrid-sortable>span.s-ico')
 	.each(function() 
 		{$(this).find('>span.ui-icon-' + 
-		($('#myGrid').jqGrid('getGridParam','sortorder') === 'desc' ? 'asc': 'desc')).hide();
+		($('#grid_id').jqGrid('getGridParam','sortorder') === 'desc' ? 'asc': 'desc')).hide();
 	});
 ```
 
@@ -249,7 +249,7 @@ Following script snippet is used to enable search toolbar in our grid:
 		...,
 	});
 	
-	$("#myGrid").jqGrid(
+	$("#grid_id").jqGrid(
 		'filterToolbar', {
 			autosearch : true,
 			searchOperators : true,
@@ -286,7 +286,7 @@ Following script snippet is used to add custom button on pager and to apply acti
 		...,
 	});
 	
-	$("#myGrid").navButtonAdd(
+	$("#grid_id").navButtonAdd(
 		'#pager', {
 			caption : "",
 			title : "Toggle Search Toolbar",
@@ -1178,7 +1178,7 @@ required'*.
 **Server Side Validation**
 ```HTML
 	function checkEmailIdForUnique(value, colname) {
-		var row = $('#myGrid').jqGrid('getGridParam', 'selrow');
+		var row = $('#grid_id').jqGrid('getGridParam', 'selrow');
 	
 		if (value == '') {
 			result = [ false, "Email ID is must." ];
