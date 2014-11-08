@@ -1209,5 +1209,5 @@ required'*.
 	}
 ```
 
-Above is the code snippet to perform server side validation. The above snippet shows how to validate *Email ID* to check whether it is unique or not. URL mensioned in the snippet will hit server to perform validation and procedure to call it is same as that of client side validations.
+Above is the code snippet to perform server side validation. The above snippet shows how to validate *Email ID* to check whether it is unique or not. URL mentioned in the snippet will hit server to perform validation and procedure to call it is same as that of client side validations.
 
