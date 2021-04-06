@@ -11,7 +11,7 @@
   <!-- Properties -->
   <properties>
   		<!-- Spring -->
-		<spring.core.version>4.1.0.RELEASE</spring.core.version>
+		<spring.core.version>5.3.5</spring.core.version>
 		<spring.data.jpa.version>1.4.1.RELEASE</spring.data.jpa.version>
 		
 		<cglib.version>2.2</cglib.version>
