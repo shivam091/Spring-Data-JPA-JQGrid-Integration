@@ -20,7 +20,7 @@
 		<jackson.version>1.9.9</jackson.version>
 
 		<!-- Database Connection -->
-		<mysql.connector.version>5.1.16</mysql.connector.version>
+		<mysql.connector.version>8.0.16</mysql.connector.version>
 		
 		<!-- Hibernate -->
 		<hibernate.version>3.6.5.Final</hibernate.version>
